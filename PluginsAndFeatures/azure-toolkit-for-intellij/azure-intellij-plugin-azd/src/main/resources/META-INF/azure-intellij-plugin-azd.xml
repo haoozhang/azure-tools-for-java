@@ -1,6 +1,21 @@
 <idea-plugin>
   <depends>com.intellij.modules.platform</depends>
   <depends>org.jetbrains.plugins.terminal</depends>
+  <depends>org.jetbrains.plugins.yaml</depends>
+
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Register azure.yaml file type: https://plugins.jetbrains.com/docs/intellij/language-and-filetype.html -->
+    <fileType name="Azure YAML"
+              implementationClass="com.microsoft.azure.toolkit.intellij.azd.filetype.AzureYamlFileType"
+              fieldName="INSTANCE"
+              language="AzureYAML"
+              fileNames="azure.yaml"/>
+
+    <codeInsight.lineMarkerProvider
+            language="AzureYAML"
+            implementationClass="com.microsoft.azure.toolkit.intellij.azd.filetype.AzureYamlLineMarkerProvider"/>
+  </extensions>
 
   <actions>
     <action id="Actions.AzdInit" class="com.microsoft.azure.toolkit.intellij.azd.actions.AzdInitCommandAction"
